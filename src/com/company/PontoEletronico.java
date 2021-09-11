@@ -1,10 +1,7 @@
 package com.company;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class PontoEletronico {
     public static void main(String[] args) {
@@ -30,6 +27,8 @@ public class PontoEletronico {
             if (h >= 7 && h <= 8) {
                 System.out.println("REGISTRO DE ENTRADA");
                 do{
+                    System.out.println("Informe o CPF:");
+                    cpf = sc.nextLine();
             }while (pontoeletronico.verificarCpf(cpf, lista) == false);
                 ponto.setEntrada(data.getTime());
             }
@@ -48,5 +47,35 @@ public class PontoEletronico {
                 //Date novadata = new Date(pt.getSaida());
             }
         }
+    }
+    private List<Pessoa> carregaPessoas() {
+        List<Pessoa> lista = new ArrayList<Pessoa>();
+        String nomes[] = { "Maria silva", "Jose soares", "Joao das neves",
+                "Juvenal mendes" };
+        String cpfs[] = { "1234", "4321", "5678", "8765" };
+        for (int i = 0; i < cpfs.length; i++) {
+            Pessoa pessoa = new Pessoa();
+            pessoa.setNome(nomes[i]);
+            pessoa.setCpf(cpfs[i]);
+            lista.add(pessoa);
+        }
+        return lista;
+    }
+    private boolean verificarCpf(String cpf, List<Pessoa> lista) {
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getCpf().equals(cpf)) {
+                return true;
+            }
+        }
+        System.out.println("CPF INCORRETO");
+        return false;
+
+
+    }
+    private void imprimir(Ponto pt){
+
+    }
+    private void MaiorMenor(){
+
     }
 }
